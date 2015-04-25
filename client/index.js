@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('codingHouseClock', [])
-.controller('clock', ['$scope', '$rootScope', function($scope, $rootScope) {
+.controller('clock', ['$scope', '$rootScope', '$interval', function($scope, $rootScope, $interval) {
   var now;
   var numNow;
+  var days = 60*60*24;
   // $scope.daysSinceDate = 0;
   // add start button to launch clock
   // create current date object
@@ -11,14 +12,14 @@ angular.module('codingHouseClock', [])
   // subtract end date from current date
   // extract out days, hours, minutes and seconds remaining
   // set interval for date refresh every second (?) || use JSON call (?)
-  $scope.startClock = function($scope) {
-    setInterval(runClock, 1000);
+  $scope.startClock = function() {
+    $interval(runClock, 1000);
 
     function runClock() {
-      $rootScope.daysSinceDate = 0;
       now = new Date();
       numNow = now.getTime();
       numNow/=1000;
+
       // $scope.start =
       // var t = 1429938030084;
 
@@ -26,30 +27,14 @@ angular.module('codingHouseClock', [])
       var s = 1427972400;
       // end date June 8, 2015
       var e = 1433761200;
-      var days = 60*60*24;
-      var hours = 60*60;
-      var minutes = 60;
 
       var timeSince = numNow - s;
-      $rootScope.daysSinceDate = Math.floor(timeSince/days);
+      $scope.daysSinceDate = Math.floor(timeSince/days);
       // var hoursSinceDate = daysSinceDate -
 
       var timeTo = e - numNow;
-      var daysToDate = timeTo/days;
-
-
-      console.log(numNow, 'since', $rootScope.daysSinceDate, 'timeSince', timeSince);
-
-
-
+      $scope.daysToDate = Math.floor(timeTo/days);
+      console.log(numNow, 'since', $rootScope.daysSinceDate, 'to', $rootScope.daysToDate);
     }
-
-
-
   };
-  // set
-
-
-
-
 }]);

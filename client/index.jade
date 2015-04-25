@@ -26,15 +26,17 @@ html(lang='en', ng-app='codingHouseClock')
             button.btn.btn-success(name='startButton', ng-click='startClock()') Start!
       .row
         .col-xs-6
-          p Days {{daysSinceDate}}
-          p Hours
-          p Minutes
-          p Seconds
+          p.dayNum {{daysSinceDate}}
+          p#daysLeft Days Gone 
+          //- p Hours
+          //- p Minutes
+          //- p Seconds
         .col-xs-6
-          p#daysLeft Days
-          p Hours
-          p Minutes
-          p Seconds
+          p.dayNum {{daysToDate}}
+          p#daysLeft Days Left 
+          //- p Hours
+          //- p Minutes
+          //- p Seconds
 
     script(src='/vendor/jquery/dist/jquery.min.js')
     script(src='/vendor/moment/min/moment.min.js')
