@@ -10,20 +10,28 @@ html(lang='en', ng-app='codingHouseClock')
     link(rel='stylesheet', href=isProd ? '/index.min.css' : '/index.css')
     link(rel='shortcut icon', href='/favicon.ico')
   body
-    .container-fluid
-      .row(ng-controller='clock')
+    .container-fluid(ng-controller='clock')
+      .row 
+        .col-xs-12
+          p#title Coding House Clock
+          p#mainTitle Use Your Limited Time Wisely
+      .row
         .col-xs-3
           .form-group
+            label(for='startDate') Current cohort: START DATE
             input(type='date', name='startDate', ng-model='start')
+            label(for='startDate') Current cohort: END DATE
             input(type='date', name='endDate', ng-model='end')
+            label(for='startButton') Launch Cohort Clock
+            button.btn.btn-success(name='startButton', ng-click='startClock()') Start!
       .row
         .col-xs-6
-          p Days
+          p Days {{daysSinceDate}}
           p Hours
           p Minutes
           p Seconds
         .col-xs-6
-          p Days
+          p#daysLeft Days
           p Hours
           p Minutes
           p Seconds
